@@ -8,6 +8,7 @@
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
     <sessions-enabled>true</sessions-enabled>
+    <ssl-enabled>true</ssl-enabled>
     <env-variables>
         <env-var name="ENV" value="${ENV}"/>
         <env-var name="GOOGLE_LOGIN" value="${GOOGLE_LOGIN}"/>

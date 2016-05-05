@@ -64,6 +64,17 @@
 	    </listener-class>
 	</listener>
 
+    <!-- force to https only -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>all</web-resource-name>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
     <!--Admin Security-->
         <security-constraint>
             <web-resource-collection>
