@@ -7,7 +7,7 @@ angular.module('CallForPaper')
 		$scope.sessionsAll = [];
 		$scope.screenSize = screenSize;
 		$scope.realDifficulty = [$filter('translate')('step2.beginner'), $filter('translate')('step2.confirmed'), $filter('translate')('step2.expert')];
-		
+
 		$scope.tabType = NextPreviousSessionService.getType();
 
 		/**
@@ -125,6 +125,16 @@ angular.module('CallForPaper')
 			} else {
 				initialParams = defaultParams;
 			}
+
+      // 4th Tab table
+      $scope.tableParamsQuickie = new ngTableParams(
+        initialParams, {
+          filterDelay: 0,
+          total: sessions.length, // length of data
+          getData: function($defer, params) {
+            getData($defer, params, 'quickie');
+          }
+        });
 
 			// 3rd Tab table
 			$scope.tableParamsCodelab = new ngTableParams(

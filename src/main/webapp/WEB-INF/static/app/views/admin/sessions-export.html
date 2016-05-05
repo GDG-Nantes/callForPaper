@@ -4,10 +4,11 @@
 	<span class="col-xs-3">
 		<span class="glyphicon glyphicon-education" ng-if="::(session.type === 'codelab')"></span>
 		<span class="glyphicon glyphicon-bullhorn" ng-if="::(session.type === 'conference')"></span>
+    <span class="glyphicon glyphicon-time" ng-if="::(session.type === 'quickie')"></span>
 		[{{::session.track}}]
 	</span>
 	<span class="col-xs-5">
-		{{::session.sessionName}} 
+		{{::session.sessionName}}
 	</span>
 	<span class="col-xs-4">
 		 by {{::session.firstname}} {{::session.name}}

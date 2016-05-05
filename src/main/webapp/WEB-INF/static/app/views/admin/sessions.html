@@ -36,6 +36,7 @@
 					<li role="presentation" ng-class="{active : tabType === ''}"><button ng-click="setActiveTab('')" href="#all" id="all-tab" role="tab" data-toggle="tab" aria-controls="all" aria-expanded="true">{{'admin.allType' | translate}}</button></li>
 					<li role="presentation" ng-class="{active : tabType === 'conference'}"><button ng-click="setActiveTab('conference')" href="#conference" role="tab" id="conference-tab" data-toggle="tab" aria-controls="conference" aria-expanded="false">{{'step2.types.conference' | translate}}</button></li>
 					<li role="presentation" ng-class="{active : tabType === 'codelab'}"><button ng-click="setActiveTab('codelab')" href="#codelab" role="tab" id="codelab-tab" data-toggle="tab" aria-controls="codelab" aria-expanded="false">{{'step2.types.codelab' | translate}}</button></li>
+          <li role="presentation" ng-class="{active : tabType === 'quickie'}"><button ng-click="setActiveTab('quickie')" href="#quickie" role="tab" id="quickie-tab" data-toggle="tab" aria-controls="quickie" aria-expanded="false">{{'step2.types.quickie' | translate}}</button></li>
 				</ul>
 				<div id="tabContent" class="tab-content tile">
 					<div role="tabpanel" ng-class="{active : tabType === '', in : tabType === ''}" class="tab-pane fade" id="all" aria-labelledby="all-tab">
@@ -152,6 +153,44 @@
 							</div>
 						</div>
 					</div>
+          <div role="tabpanel" ng-class="{active : tabType === 'quickie', in : tabType === 'quickie'}" class="tab-pane fade" id="quickie" aria-labelledby="quickie-tab">
+            <div class="row">
+              <div class="col-xs-12">
+                <br>
+                <div ng-if="!screenSize.is('xs, sm')">
+                  <table ng-table="tableParamsQuickie" show-filter="true" class="table table-striped table-hover table-bordered">
+                    <tr ng-class="{success : session.reviewed}" ng-repeat="session in $data" ui-sref="admin.session({ id: session.added })">
+                      <td class="pointer" filter="{'fullname': 'text'}" data-title="'admin.speaker' | translate">{{::session.name}} {{::session.firstname}}</td>
+                      <td class="col-xs-3 noPadding pointer" filter="{'sessionName': 'text'}" data-title="'admin.title' | translate">{{::session.sessionName}}</td>
+                      <td class="pointer" filter="{'difficulty': 'select'}" filter-data="difficulties()" sortable="'difficulty'" data-title="'admin.difficulty' | translate">{{ 'step2.' + session.keyDifficulty | translate}}</td>
+                      <td class="pointer" filter="{'track': 'select'}" filter-data="tracks()" data-title="'admin.track' | translate">{{ 'step2.tracks.' + session.track | translate}}</td>
+                      <td class="col-xs-12 noPadding pointer" filter="{'description': 'text'}" data-title="'admin.description' | translate" ng-bind-html="::session.description | mdToPlaintext | truncate"></td>
+                      <td class="pointer" sortable="'mean'" data-title="'admin.mean' | translate">{{::session.mean | number:2}}</td>
+                      <td class="pointer" sortable="'added'" data-title="'admin.date' | translate">{{::session.added | date}}</td>
+                      <td class="pointer" sortable="'lastModification'" data-title="'admin.lastModification' | translate">
+                        <span ng-if="session.lastModification !== 0">{{::session.lastModification | date}}</span>
+                        <span ng-if="session.lastModification === 0">{{'admin.never' | translate}}</span>
+                      </td>
+                      <td class="pointer" sortable="'notViewedCount'" data-title="'admin.newMessages' | translate">{{::session.notViewedCount}}</td>
+                      <td class="pointer" sortable="'voteCount'" data-title="'admin.votes' | translate">
+                        <img tooltip="{{user.name}}" ng-repeat="user in session.voteUsersEmail" class="pull-left mini-avatar" gravatar-src="user.email" gravatar-size="20">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+                <div ng-if="screenSize.is('xs, sm')" class="table-responsive">
+                  <table ng-table="tableParamsQuickie" show-filter="true" class="table table-striped table-hover table-bordered">
+                    <tr ng-class="{success : session.reviewed}" ng-repeat="session in $data" ui-sref="admin.session({ id: session.added })">
+                      <td class="pointer" filter="{'fullname': 'text'}" data-title="'admin.speaker' | translate">{{::session.name}} {{::session.firstname}}</td>
+                      <td class="pointer" filter="{'sessionName': 'text'}" data-title="'admin.title' | translate">{{::session.sessionName}}</td>
+                      <td class="pointer" filter="{'difficulty': 'select'}" filter-data="difficulties()" sortable="'difficulty'" data-title="'admin.difficulty' | translate">{{ 'step2.' + session.keyDifficulty | translate}}</td>
+                      <td class="pointer" sortable="'notViewedCount'" data-title="'admin.newMessages' | translate">{{::session.notViewedCount}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
 				</div>
 			</div>
 		</div>

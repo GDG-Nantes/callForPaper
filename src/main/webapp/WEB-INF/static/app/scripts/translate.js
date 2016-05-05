@@ -35,7 +35,7 @@ angular.module('CallForPaper')
         "noSendedTalks": "Vous n'avez pas encore proposé de talk",
         "verification": "Vérification",
         "verificationNeeded": "Un e-mail a été envoyé à votre adresse, cliquez sur le lien présent dans celui-ci pour valider votre compte.",
-        "submittedTalks": "Nombre de talks soumis : "
+        "submittedTalks": "Nombre total de talks soumis : "
       },
       "profil": {
         "save": "Sauvegarder",
@@ -104,21 +104,22 @@ angular.module('CallForPaper')
         "difficulty": "Difficulté * (Débutant, Confirmé, Expert) :",
         "track": "Catégorie * :",
         "cospeaker": "Co-conférenciers :",
-        "hintCospeaker": "Si vous n'êtes pas seul lors de la présentation, donnez les nom / email / bio / liens sociaux des autres conférenciers.",
+        "hintCospeaker": "Si vous avez un co-speaker lors de la présentation, donnez le nom / email / bio / liens sociaux de l'autre conférencier.",
         "beginner": "Débutant",
         "confirmed": "Confirmé",
         "expert": "Expert",
         "tracks": {
-          "cloud": "Cloud / BigData",
-          "mobile": "Mobile et objets connectés",
+          "cloud": "Cloud & BigData",
+          "mobile": "IoT & Mobilité",
           "web": "Web",
-          "discovery": "Découverte"
+          "discovery": "Découverte (UX Design, Management, Agilité)"
         },
         "type": "Type * :",
-        "hintType": "Une conférence doit durer environ 45 minutes et un codelab 2 heures.",
+        "hintType": "Une conférence doit durer environ 45 minutes, un codelab 2 heures et un quickie 15 minutes (Q/R incluses).",
         "types": {
           "conference": "Conférence",
-          "codelab": "Codelab"
+          "codelab": "Codelab",
+          "quickie": "Quickie"
         },
         "hintTrack": "Choisissez la catégorie dans laquelle vous pensez que votre conférence se situe."
       },
@@ -306,7 +307,7 @@ angular.module('CallForPaper')
         "noSendedTalks": "You don't have submitted any talk yet",
         "verification": "Verification",
         "verificationNeeded": "An email has been sent to your address, click the link in it to confirm your account.",
-        "submittedTalks": "Submitted talks count: "
+        "submittedTalks": "Total Submitted talks count: "
       },
       "profil": {
         "save": "Save",
@@ -381,16 +382,17 @@ angular.module('CallForPaper')
         "confirmed": "Confirmed",
         "expert": "Expert",
         "tracks": {
-          "cloud": "Cloud / BigData",
-          "mobile": "Mobile and internet of things",
+          "cloud": "Cloud & BigData",
+          "mobile": "IoT & Mobile",
           "web": "Web",
-          "discovery": "Discovery"
+          "discovery": "Discovery (UX Design / Agile / Management / Robots...)"
         },
         "type": "Type *:",
-        "hintType": "A conference must last about 45 minutes and a codelab about 2 hours.",
+        "hintType": "A conference must last about 45 minutes, a codelab about 2 hours and a 'quickie' talk 15 minutes.",
         "types": {
           "conference": "Conference",
-          "codelab": "Codelab"
+          "codelab": "Codelab",
+          "quickie": "Quickie"
         },
         "hintTrack": "Choose the track where you think your talk will be place."
       },
