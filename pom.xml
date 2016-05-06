@@ -333,10 +333,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
+				<version>2.6</version>
 				<configuration>
 					<archiveClasses>true</archiveClasses>
-					<warSourceExcludes>WEB-INF/static/node_modules/</warSourceExcludes>
+					<warSourceExcludes>WEB-INF/static/node_modules/,WEB-INF/static/test/,WEB-INF/static/widget/,WEB-INF/static/.tmp/,WEB-INF/static/app/</warSourceExcludes>
 					<webResources>
 						<!-- in order to interpolate version from pom into appengine-web.xml -->
 						<resource>
@@ -345,6 +345,10 @@
 							<targetPath>WEB-INF</targetPath>
 							<excludes>
 								<exclude>static/node_modules/</exclude>
+								<exclude>static/test/</exclude>
+								<exclude>static/widget/</exclude>
+								<exclude>static/.tmp/</exclude>
+								<exclude>static/app/</exclude>
 							</excludes>
 						</resource>
 					</webResources>
