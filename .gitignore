@@ -9,6 +9,8 @@ src/main/webapp/WEB-INF/static/dist
 src/main/webapp/WEB-INF/static/.tmp
 src/main/webapp/WEB-INF/static/.sass-cache
 
+### ssls config ###
+cfp_gdgnantes_com
 
 ### Eclipse ###
 *.pydevproject
