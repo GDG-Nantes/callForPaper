@@ -176,3 +176,32 @@ mvn appengine:devserver [-Dmaven.test.skip=true]
  - http://127.0.0.1:8080/#/config : Google Drive linking panel (autorize CFP to access your account to create the spreadsheet)
 
  - http://127.0.0.1:8080/#/admin : Admin panel (rating, comment...)
+
+### Deployment
+
+To use the powerful of AppEngine static engine, we divide the project into 2 _services_:
+- backend: war and conf files
+- default: static files resulting of `WEB-INF/static/dist` folder
+
+Use the app.yaml in the root directory to upload the frontend service with the following commands:
+```
+grunt build
+cp app.yaml src/main/webapp/WEB-INF/static/dist/
+gcloud --project devfestnantes2015-cfp preview app deploy --version v1 --quiet src/main/webapp/WEB-INF/static/dist/app.yaml
+```
+
+Then, we have to configure the `src/main/webapp/WEB-INF/static/dist/dispatch.yaml` service to redirect the url to the good service:
+```
+dispatch:
+  - url: "*/"
+    module: default
+
+  - url: "*/api/*"
+    module: backend
+
+  - url: "*/auth/*"
+    module: backend
+
+```
+Use the upload command to activate the dispatch `appcfg.sh update dist/` or
+`appcfg.py -A devfestnantes2015-cfp update_dispatch dist/`

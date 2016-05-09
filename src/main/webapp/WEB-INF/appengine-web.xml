@@ -3,11 +3,12 @@
     <application>devfestnantes2015-cfp</application>
     <version>v10</version>
     <threadsafe>true</threadsafe>
-    <module>default</module>
+    <module>backend</module>
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
     </system-properties>
     <sessions-enabled>true</sessions-enabled>
+    <async-session-persistence enabled="true" />
     <ssl-enabled>true</ssl-enabled>
     <env-variables>
         <env-var name="ENV" value="${ENV}"/>

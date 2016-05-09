@@ -1,0 +1,9 @@
+dispatch:
+  - url: "*/"
+    module: default
+
+  - url: "*/api/*"
+    module: backend
+
+  - url: "*/auth/*"
+    module: backend

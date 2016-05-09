@@ -1,0 +1,43 @@
+service: default
+runtime: python27
+api_version: 1
+threadsafe: true
+
+default_expiration: "30d"
+inbound_services:
+  - warmup
+
+handlers:
+# re-direct to index.html if no path is give
+- url: /
+  static_files: index.html
+  upload: index.html
+  expiration: "0d 5m"
+  secure: always
+#  http_headers:
+#    Link: '</bundle.js>; rel=preload; as=script, </ge.png>; rel=preload; as=image'
+
+# re-direct to index.html
+- url: /index.html(.*)
+  static_files: index.html
+  upload: index.html(.*)
+  expiration: "0d 5m"
+  secure: always
+
+# access the static resources in the root director
+- url: /(.*\.(css|gif|png|jpg|jpeg|ico|js|html|htm|xml|txt|ttf|json|svg|woff|woff2|eot|xcf|pdf))
+  static_files: \1
+  upload: (.*\.(css|gif|png|jpg|jpeg|ico|js|html|htm|xml|txt|ttf|json|svg|woff|woff2|eot|xcf|pdf))
+
+# redirect to index.html for history html5 api
+- url: /(.*)
+  static_files: index.html
+  upload: index.html
+  expiration: "0d 5m"
+  secure: always
+
+skip_files:
+- ^node_modules/*.*
+- ^\.git/*.*
+- ^\.tmp/*.*
+

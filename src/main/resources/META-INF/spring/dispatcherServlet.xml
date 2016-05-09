@@ -95,8 +95,11 @@
 
 	<!-- Static Resource Config -->
 	<context:property-placeholder location="WEB-INF/application-#{systemEnvironment['ENV']}.properties" ignore-unresolvable="true"/>
+	<!--
+	no need with static files !
 	<mvc:resources location="/WEB-INF/static/widget/" mapping="/widget/**" />
 	<mvc:resources location="/WEB-INF/static/${webapp.dir}/" mapping="/**" />
+	-->
 	<!-- ViewResolver Config -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
