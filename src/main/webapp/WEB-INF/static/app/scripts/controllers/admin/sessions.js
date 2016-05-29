@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('CallForPaper')
-	.controller('AdminSessionsCtrl', ['$scope', 'AdminSession', '$filter', 'ngTableParams', '$q', 'Notification', 'screenSize', 'AdminStats', 'localStorageService', 'NextPreviousSessionService', function($scope, AdminSession, $filter, ngTableParams, $q, Notification, screenSize, AdminStats, localStorageService, NextPreviousSessionService) {
+	.controller('AdminSessionsCtrl', ['SanitizeService', '$scope', 'AdminSession', '$filter', 'ngTableParams', '$q', 'Notification', 'screenSize', 'AdminStats', 'localStorageService', 'NextPreviousSessionService', function(SanitizeService, $scope, AdminSession, $filter, ngTableParams, $q, Notification, screenSize, AdminStats, localStorageService, NextPreviousSessionService) {
 		var sessions = []
 		$scope.sessions = [];
 		$scope.sessionsAll = [];
@@ -17,6 +17,7 @@ angular.module('CallForPaper')
 		 */
 		AdminSession.query().$promise.then(function(sessionsTmp) {
 			sessions = sessionsTmp.map(function(session) {
+        SanitizeService.cleanSession(session);
 				session.fullname = session.name + " " + session.firstname;
 				session.keyDifficulty = (['beginner', 'confirmed', 'expert'])[session.difficulty - 1];
 				return session;

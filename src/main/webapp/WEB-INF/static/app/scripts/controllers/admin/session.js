@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('CallForPaper')
-	.controller('AdminSessionCtrl', ['$scope', '$stateParams', '$filter', '$translate', 'AdminSession', 'AdminComment', 'AdminRate', '$modal', '$state', 'CommonProfilImage', 'AuthService', 'NextPreviousSessionService', 'hotkeys', 'AdminContact', 'Notification', function($scope, $stateParams, $filter, $translate, AdminSession, AdminComment, AdminRate, $modal, $state, CommonProfilImage, AuthService, NextPreviousSessionService, hotkeys, AdminContact, Notification) {
-		$scope.tab = $stateParams.tab; 
+	.controller('AdminSessionCtrl', ['SanitizeService', '$sanitize', '$scope', '$stateParams', '$filter', '$translate', 'AdminSession', 'AdminComment', 'AdminRate', '$modal', '$state', 'CommonProfilImage', 'AuthService', 'NextPreviousSessionService', 'hotkeys', 'AdminContact', 'Notification', function(SanitizeService, $sanitize, $scope, $stateParams, $filter, $translate, AdminSession, AdminComment, AdminRate, $modal, $state, CommonProfilImage, AuthService, NextPreviousSessionService, hotkeys, AdminContact, Notification) {
+		$scope.tab = $stateParams.tab;
 
 		$scope.session = null;
 		$scope.adminEmail = null;
@@ -14,6 +14,7 @@ angular.module('CallForPaper')
 		AdminSession.get({
 			id: $stateParams.id
 		}).$promise.then(function(sessionTmp) {
+      SanitizeService.cleanSession(sessionTmp);
 			$scope.session = sessionTmp;
 
 			// Add links to socials
@@ -27,7 +28,7 @@ angular.module('CallForPaper')
 			if (sessionTmp.twitter !== null) $scope.session.twitter = $filter('createLinks')(sessionTmp.twitter);
 			if (sessionTmp.googlePlus !== null) $scope.session.googlePlus = $filter('createLinks')(sessionTmp.googlePlus);
 			if (sessionTmp.github !== null) $scope.session.github = $filter('createLinks')(sessionTmp.github);
-			
+
 			// Set difficulty key
 			$scope.session.keyDifficulty = (['beginner', 'confirmed', 'expert'])[sessionTmp.difficulty - 1];
 
@@ -74,7 +75,7 @@ angular.module('CallForPaper')
 				callback: function() {
 					if($scope.next)
 					$state.go('admin.session',{ id: $scope.next });
-					
+
 				}
 			})
 			.add({
@@ -83,7 +84,7 @@ angular.module('CallForPaper')
 				callback: function() {
 					if($scope.next)
 					$state.go('admin.sessions');
-					
+
 				}
 			})
 
@@ -96,7 +97,10 @@ angular.module('CallForPaper')
 				rowId: $stateParams.id
 			}, function(commentsTmp) {
 				setTimeout(setViewed, 1000);
-				$scope.comments = commentsTmp;
+        $scope.comments = _.map(commentsTmp, function(comment) {
+          comment.comment = $sanitize(comment.comment);
+          return comment;
+        });
 			})
 		}
 		updateComments();
@@ -245,7 +249,7 @@ angular.module('CallForPaper')
 		})
 
 		$scope.rateButtonDisabled = false;
-		
+
 		/*
 		 *	Post new rate
 		 */
@@ -399,7 +403,7 @@ angular.module('CallForPaper')
 		/**
 		 * CONTACT
 		 */
-		
+
 		/**
 		 * get contacts of the session
 		 * @return {[AdminContact]}
@@ -409,7 +413,10 @@ angular.module('CallForPaper')
 				rowId: $stateParams.id
 			}, function(contactsTmp) {
 				setTimeout(setViewed, 1000);
-				$scope.contacts = contactsTmp;
+				$scope.contacts = _.map(contactsTmp, function(contact) {
+          contact.comment = $sanitize(contact.comment);
+          return contact;
+        });
 			})
 		}
 		updateContacts();
@@ -458,12 +465,12 @@ angular.module('CallForPaper')
 				controller: 'EditModalInstanceCtrl',
 				resolve: {
 					comment: function() {
-						return localContact.comment;
+						return $sanitize(localContact.comment);
 					}
 				}
 			});
 			modalInstance.result.then(function(comment) {
-				localContact.comment = comment;
+				localContact.comment = $sanitize(comment);
 				putContact(localContact);
 			}, function() {
 				// cancel
@@ -504,8 +511,8 @@ angular.module('CallForPaper')
 			})
 		}
 	}])
-	.controller('EditModalInstanceCtrl', ['$scope', '$modalInstance', 'comment', function($scope, $modalInstance, comment) {
-		$scope.commentMsg = comment;
+	.controller('EditModalInstanceCtrl', ['$sanitize', '$scope', '$modalInstance', 'comment', function($sanitize, $scope, $modalInstance, comment) {
+		$scope.commentMsg = $sanitize(comment);
 		$scope.ok = function() {
 			$modalInstance.close($scope.commentMsg);
 		};

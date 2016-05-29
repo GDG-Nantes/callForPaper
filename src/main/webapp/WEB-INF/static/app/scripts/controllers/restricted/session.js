@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('CallForPaper')
-	.controller('RestrictedSessionCtrl', ['$scope', '$stateParams', '$filter', 'RestrictedSession', 'CommonProfilImage', 'RestrictedContact', '$modal', 'Config', function($scope, $stateParams, $filter, RestrictedSession, CommonProfilImage, RestrictedContact, $modal, Config) {
-		$scope.tab = $stateParams.tab; 
+	.controller('RestrictedSessionCtrl', ['$sanitize', 'SanitizeService', '$scope', '$stateParams', '$filter', 'RestrictedSession', 'CommonProfilImage', 'RestrictedContact', '$modal', 'Config', function($sanitize, SanitizeService, $scope, $stateParams, $filter, RestrictedSession, CommonProfilImage, RestrictedContact, $modal, Config) {
+		$scope.tab = $stateParams.tab;
 
 		$scope.session = null;
 		/**
@@ -12,6 +12,7 @@ angular.module('CallForPaper')
 		RestrictedSession.get({
 			id: $stateParams.id
 		}).$promise.then(function(sessionTmp) {
+      SanitizeService.cleanSession(sessionTmp);
 			$scope.session = sessionTmp;
 
 			// Add link to social
@@ -38,7 +39,7 @@ angular.module('CallForPaper')
 		/**
 		 * CONTACT
 		 */
-		
+
 		/**
 		 * get contacts of the session
 		 * @return {[RestrictedContact]}
@@ -47,7 +48,10 @@ angular.module('CallForPaper')
 			RestrictedContact.getByRowId({
 				rowId: $stateParams.id
 			}, function(contactsTmp) {
-				$scope.contacts = contactsTmp;
+				$scope.contacts = _.map(contactsTmp, function(contact) {
+          contact.comment = $sanitize(contact.comment);
+          return contact;
+        });
 			})
 		}
 		updateContacts();
@@ -106,12 +110,12 @@ angular.module('CallForPaper')
 				controller: 'EditModalInstanceCtrl',
 				resolve: {
 					comment: function() {
-						return localContact.comment;
+						return $sanitize(localContact.comment);
 					}
 				}
 			});
 			modalInstance.result.then(function(comment) {
-				localContact.comment = comment;
+				localContact.comment = $sanitize(comment);
 				putContact(localContact);
 			}, function() {
 				// cancel

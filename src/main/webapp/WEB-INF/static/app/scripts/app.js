@@ -32,7 +32,8 @@ angular.module('CallForPaper', [
     'LocalStorageModule',
     'ngLodash',
     'cfp.hotkeys',
-    'ngAria'
+    'ngAria',
+    'ngSanitize',
   ])
   .constant('Config', {
     'recaptcha': '6Lcn4gcTAAAAAPATfe-4XVAh8bI4CW7HUAAwbNvy',
