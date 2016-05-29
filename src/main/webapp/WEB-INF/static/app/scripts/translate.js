@@ -23,6 +23,20 @@ angular.module('CallForPaper')
         "more": "plus",
         "close": "Fermer"
       },
+      "disclaimer": {
+        "line1": "est un événement international, avec 75% de conférences en français et 25% en anglais.",
+        "line2": "Les principaux thèmes de cette année sont : #cloud #container #paas #iaas #web #angular #react #iot #functionalProgramming #bigData #agile #design.",
+        "line3": "D'autres sujets sont les bienvenus si vous croyez qu'ils sont pertinents.",
+        "line4": "2 speakers maximum.",
+        "line5": "Les speakers sélectionnés par le call for paper auront accès gratuitement aux deux jours de la conférence. Petit-déjeuner, Déjeuner, Speaker Dinner & Afterparty sont inclus dans le package.",
+        "line6": "La quasi-totalité est filmée en HD et disponible sur Youtube une semaine après l'événement. Nous avons eu 5 000 vues lors de l'édition 2015",
+        "line7": "Les frais de déplacement et d'hébergement POURRAIENT être couverts par le DevFest Nantes pour les speakers sélectionnés dans le cadre de ce call for paper.",
+        "codeConduct": "Code de conduite",
+        "urlCodeConduct": "http://devfest.gdgnantes.com/cod.html",
+        "informations": "Voici quelques informations sur les formats et catégories des talks :",
+        "track": "Catégories :",
+        "type": "Formats (durée Q/R incluses) :"
+      },
       "dashboard": {
         "createNewSession": "Créer un nouveau talk",
         "submissionDisabled": "La soumission de nouvelles candidatures est désactivée.",
@@ -294,6 +308,20 @@ angular.module('CallForPaper')
         "count2": "languages",
         "more": "more",
         "close": "Close"
+      },
+      "disclaimer": {
+        "line1": "is an international event, talks are expected 75% in french and 25% in english.",
+        "line2": "Main topics for this year are : #cloud #container #paas #iaas #web #angular #react #iot #functionalProgramming #bigData #agile #design.",
+        "line3": "Other topics are welcome if you believe they are relevant.",
+        "line4": "Maximum 2 speakers.",
+        "line5": "Speakers selected through the call for papers will have free access both days of the conference. Breakfast, Lunch, Speaker Dinner & Afterparty are included in the package.",
+        "line6": "Almost all is recorded in HD and available on Youtube one week after the event. We got 5 000 views on 2015 edition",
+        "line7": "Travel and lodging expenses COULD be covered by DevFest Nantes for speakers selected through this call for papers.",
+        "codeConduct": "Code of conduct",
+        "urlCodeConduct": "http://devfest.gdgnantes.com/en/cod.html",
+        "informations": "Some informations about tracks and formats :",
+        "track": "Tracks :",
+        "type": "Formats (duration Q/A included) :"
       },
       "dashboard": {
         "createNewSession": "Create a new talk",
