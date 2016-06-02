@@ -48,6 +48,109 @@
     <link rel="stylesheet" href="styles/custom-material.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <style>
+      .build-details {
+        display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .build-details .loader-container div {
+          width: 39px;
+          height: 30px;
+          position: absolute;
+          opacity: 0;
+          -webkit-transform: translateY(-30px);
+          -webkit-animation: loader-brick 4s ease-in infinite;
+          transform: translateY(-30px);
+          animation: loader-brick 4s ease-in infinite
+      }
+
+      @-webkit-keyframes loader-brick {
+          0 {
+              opacity: 0;
+              -webkit-transform: translateY(-30px)
+          }
+
+          10% {
+              opacity: 0;
+              -webkit-transform: translateY(-30px)
+          }
+
+          20% {
+              opacity: 1;
+              -webkit-transform: translateY(0)
+          }
+
+          70% {
+              opacity: 1;
+              -webkit-transform: translateY(0)
+          }
+
+          80% {
+              opacity: 0;
+              -webkit-transform: translateY(20px)
+          }
+
+          100% {
+              opacity: 0;
+              -webkit-transform: translateY(20px)
+          }
+      }
+
+      @keyframes loader-brick {
+          0 {
+              opacity: 0;
+              transform: translateY(-30px)
+          }
+
+          10% {
+              opacity: 0;
+              transform: translateY(-30px)
+          }
+
+          20% {
+              opacity: 1;
+              transform: translateY(0)
+          }
+
+          70% {
+              opacity: 1;
+              transform: translateY(0)
+          }
+
+          80% {
+              opacity: 0;
+              transform: translateY(20px)
+          }
+
+          100% {
+              opacity: 0;
+              transform: translateY(20px)
+          }
+      }
+
+      .build-details .loader-container .first {
+          background: transparent url(./loader_1.png) 0 0;
+          top: 160px;
+          z-index: 10
+      }
+
+      .build-details .loader-container .second {
+          background: transparent url(./loader_2.png) 0 0;
+          top: 145px;
+          z-index: 11;
+          -webkit-animation-delay: .4s
+      }
+
+      .build-details .loader-container .third {
+          background: transparent url(./loader_3.png) 0 0;
+          top: 130px;
+          z-index: 12;
+          -webkit-animation-delay: .8s
+      }
+    </style>
 </head>
 <body ng-app="CallForPaper">
     <!--[if lt IE 7]>
@@ -59,7 +162,15 @@
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
     <!-- endbuild -->
-    <div id="views" ui-view=""></div>
+    <div id="views" ui-view="">
+      <header class="build-details">
+        <div class="loader-container">
+          <div class="third"></div>
+          <div class="second"></div>
+          <div class="first"></div>
+        </div>
+      </header>
+    </div>
     <!-- build:js scripts/vendor.js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -110,7 +221,7 @@
     <script src="scripts/directives/angular-language-picker.templates.js" type="text/javascript"></script>
     <script src="scripts/directives/mdPreview.js" type="text/javascript"></script>
     <script src="scripts/app.js" type="text/javascript"></script>
-    
+
     <!-- Controller -->
     <script src="scripts/controllers/admin/admin.js" type="text/javascript"></script>
     <script src="scripts/controllers/admin/sessions.js" type="text/javascript"></script>
@@ -134,7 +245,7 @@
     <script src="scripts/controllers/restricted/session.js" type="text/javascript"></script>
     <script src="scripts/controllers/config/config.js" type="text/javascript"></script>
     <script src="scripts/controllers/config/autorize.js" type="text/javascript"></script>
-    
+
     <!-- Resources -->
     <script src="scripts/resources/Application.js" type="text/javascript"></script>
     <script src="scripts/resources/Verify.js" type="text/javascript"></script>
@@ -152,12 +263,12 @@
     <script src="scripts/resources/restricted/RestrictedUser.js" type="text/javascript"></script>
     <script src="scripts/resources/restricted/RestrictedContact.js" type="text/javascript"></script>
     <script src="scripts/resources/restricted/RestrictedProfilImage.js" type="text/javascript"></script>
-    
+
     <script src="scripts/filters/filters.js" type="text/javascript"></script>
     <script src="scripts/translate.js" type="text/javascript"></script>
     <script src="scripts/directives/international-phone-number.js" type="text/javascript"></script>
     <script src="scripts/directives/bsProcessValidator.js" type="text/javascript"></script>
-    
+
     <script src="scripts/factory/authHttpResponseInterceptor.js" type="text/javascript"></script>
     <script src="scripts/factory/csrfInterceptor.js" type="text/javascript"></script>
     <script src="scripts/factory/authService.js" type="text/javascript"></script>
