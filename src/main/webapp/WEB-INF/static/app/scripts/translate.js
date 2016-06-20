@@ -312,7 +312,7 @@ angular.module('CallForPaper')
         "close": "Close"
       },
       "disclaimer": {
-        "line1": "will take place on November 9th and 10th 2016 at 'la Cité des Congrès' of Nantes (France).",
+        "line1": "will take place on 9th and 10th November 2016 at the Cité des Congrès in Nantes (France).",
         "line2": "An international event, talks are expected 75% in french and 25% in english.",
         "line3": "Main topics for this year are : #cloud #container #paas #iaas #web #angular #react #iot #functionalProgramming #bigData #agile #design.",
         "line4": "Other topics are welcome if you believe they are relevant.",
