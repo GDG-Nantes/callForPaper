@@ -1,6 +1,8 @@
 
 # Call For Paper
 
+**WARNING** ⚠️ This repository is obsolete since 2016. Please have a look to the maintained fork [cfpio](https://github.com/cfpio/callForPapers) and the new CFP we used at GDG Nantes: [conference-hall](https://github.com/bpetetot/conference-hall) 💚
+
 <img src="https://raw.githubusercontent.com/SII-Nantes/callForPaper/master/readme/screenshot.png" alt="alt text" width="100%">
 
 ## Features
